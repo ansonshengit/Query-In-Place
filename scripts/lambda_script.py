@@ -26,7 +26,7 @@ def lambda_handler(event, context):
 
         data = response['body'].read()
 
-        s3.put_object(Body=data, Bucket='ansons-us-east-1', Key='glacier-retrieve/get-job-output/airport-code-archive.csv')
+        s3.put_object(Body=data, Bucket='<your bucket name>', Key='<your object key>')
         print("put object submitted")
     else :
         print("not the right job type")
