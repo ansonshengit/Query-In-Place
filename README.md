@@ -35,7 +35,7 @@ Sample Data Description: Example ELB logs which is stored s3://athena-examples/e
 ## Create External Table using DDL statement:
 1. Launch Athena, and select the database that you wish to create the table in on left panel. It can be the default. 
 2. Run the below DDL statement, this should create a table under the selected database, against the sample elb logs. 
-`
+```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs_raw_native (
   request_timestamp string, 
   elb_name string, 
@@ -60,7 +60,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
 WITH SERDEPROPERTIES (
          'serialization.format' = '1','input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:\-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' ) 
 LOCATION 's3://athena-examples/elb/raw/';
-`
+```
 
 ## Run Simple Query:
 1. You created a table on the data stored in Amazon S3 and you are now ready to query the data. Run a simple query:
