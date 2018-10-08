@@ -35,35 +35,39 @@ Sample Data Description: Example ELB logs which is stored s3://athena-examples/e
 ## Create External Table using DDL statement:
 1. Launch Athena, and select the database that you wish to create the table in on left panel. It can be the default. 
 2. Run the below DDL statement, this should create a table under the selected database, against the sample elb logs. 
-``CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs_raw_native (``
-`` request_timestamp string,``
-``  elb_name string, ``
-``  request_ip string, ``
-``  request_port int, ``
-``  backend_ip string, ``
-``  backend_port int, ``
-``  request_processing_time double, ``
-``  backend_processing_time double, ``
-``  client_response_time double, ``
-``  elb_response_code string, ``
-``  backend_response_code string, ``
-``  received_bytes bigint, ``
-``  sent_bytes bigint, ``
-``  request_verb string, ``
-``  url string, ``
-``  protocol string, ``
-``  user_agent string, ``
-``  ssl_cipher string, ``
-`` ssl_protocol string ) 
-``ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'``
-``WITH SERDEPROPERTIES (``
-``         'serialization.format' = '1','input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:\-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' ) 
-LOCATION 's3://athena-examples/elb/raw/';``
+`
+CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs_raw_native (
+  request_timestamp string, 
+  elb_name string, 
+  request_ip string, 
+  request_port int, 
+  backend_ip string, 
+  backend_port int, 
+  request_processing_time double, 
+  backend_processing_time double, 
+  client_response_time double, 
+  elb_response_code string, 
+  backend_response_code string, 
+  received_bytes bigint, 
+  sent_bytes bigint, 
+  request_verb string, 
+  url string, 
+  protocol string, 
+  user_agent string, 
+  ssl_cipher string, 
+  ssl_protocol string ) 
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+WITH SERDEPROPERTIES (
+         'serialization.format' = '1','input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:\-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' ) 
+LOCATION 's3://athena-examples/elb/raw/';
+`
 
 ## Run Simple Query:
 1. You created a table on the data stored in Amazon S3 and you are now ready to query the data. Run a simple query:
 
-`SELECT * FROM elb_logs_raw_native WHERE elb_response_code = '200' LIMIT 100;`
+`
+SELECT * FROM elb_logs_raw_native WHERE elb_response_code = '200' LIMIT 100;
+`
 
 ## Create a External Table which Partitions the data:
 The sampel ELB log is stored in time-series formats. Without a partition, Athena scans the entire table while executing queries. With partitioning, you can restrict Athena to specific partitions, thus reducing the amount of data scanned, lowering costs, and improving performance.
@@ -71,7 +75,8 @@ Athena uses Apache Hive–style data partitioning.  You can partition your data 
 To use partitions, you first need to change your schema definition to include partitions, then load the partition metadata in Athena. Use the same CREATE TABLE statement but with partitioning enabled:
 
 1. Run DDL statement:
-`CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs_raw_native_part (
+`
+CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs_raw_native_part (
   request_timestamp string, 
   elb_name string, 
   request_ip string, 
@@ -95,26 +100,34 @@ PARTITIONED BY(year string, month string, day string)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
 WITH SERDEPROPERTIES (
          'serialization.format' = '1','input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:\-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' )
-LOCATION 's3://athena-examples/elb/raw/';`
+LOCATION 's3://athena-examples/elb/raw/';
+`
 
 2. Add partition:
-`ALTER TABLE elb_logs_raw_native_part ADD PARTITION (year='2015',month='01',day='01') location 's3://athena-examples/elb/raw/2015/01/01/'`
+`
+ALTER TABLE elb_logs_raw_native_part ADD PARTITION (year='2015',month='01',day='01') location 's3://athena-examples/elb/raw/2015/01/01/'
+`
 
 3. Display the partitions created:
-`show partitions elb_logs_raw_native_part`
+`
+show partitions elb_logs_raw_native_part
+`
 
 4. Run more efficient query. Now you can restrict each query by specifying the partitions in the WHERE clause. In this case, Athena scans less data and finishes faster. Here is an example:
-`SELECT distinct(elb_response_code),
+`
+SELECT distinct(elb_response_code),
          count(url)
 FROM elb_logs_raw_native_part
 WHERE year='2015'
         AND month= '01'
         AND day='01'
-GROUP BY  elb_response_code`
+GROUP BY  elb_response_code
+`
 
 ## Query columnar format
 1. Create a table on the Parquet data set. Note that your schema remains the same and you are compressing files using Snappy.
-`CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs_pq (
+`
+CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs_pq (
   request_timestamp string,
   elb_name string,
   request_ip string,
@@ -137,18 +150,24 @@ GROUP BY  elb_response_code`
 PARTITIONED BY(year int, month int, day int) 
 STORED AS PARQUET
 LOCATION 's3://athena-examples/elb/parquet/'
-tblproperties ("parquet.compress"="SNAPPY");`
+tblproperties ("parquet.compress"="SNAPPY");
+`
 
 2. To allow the catalog to recognize all partitions, run msck repair table elb_logs_pq. After the query is complete, you can list all your partitions.
 
-`msck repair table elb_logs_pq`
+`
+msck repair table elb_logs_pq
+`
 
 3. Show partitions:
-`show partitions elb_logs_pq`
+`
+show partitions elb_logs_pq
+`
 
 Comparing performance between querying of the same query between text files and Parquet files
 1. Query on Parquet file, compressed, partitioned, and columnar data:
-`SELECT elb_name,
+`
+SELECT elb_name,
        uptime,
        downtime,
        cast(downtime as DOUBLE)/cast(uptime as DOUBLE) uptime_downtime_ratio
@@ -162,10 +181,12 @@ FROM
         1
         ELSE 0 end) AS downtime
     FROM elb_logs_pq
-    GROUP BY  elb_name)`
+    GROUP BY  elb_name)
+    `
     
 2. Query on raw text files:
-`SELECT elb_name,
+`
+SELECT elb_name,
        uptime,
        downtime,
        cast(downtime as DOUBLE)/cast(uptime as DOUBLE) uptime_downtime_ratio
@@ -179,7 +200,8 @@ FROM
         1
         ELSE 0 end) AS downtime
     FROM elb_logs_raw_native
-    GROUP BY  elb_name)`
+    GROUP BY  elb_name)
+`
 
 
 
