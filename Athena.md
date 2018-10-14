@@ -1,6 +1,9 @@
 # Athena Session
-
-In this session, you define a database, configure a crawler to explore data in an Amazon S3 bucket, create a table, transform the CSV file into Parquet, create a table for the Parquet data, and query the data with Amazon Athena.
+https://aws.amazon.com/blogs/big-data/build-a-data-lake-foundation-with-aws-glue-and-amazon-s3/
+In this session, you will do the following:
+1. Define a database.
+2. Configure a crawler to explore data in an Amazon S3 bucket, and create a table fromt it. 
+3. create a table, transform the CSV file into Parquet, create a table for the Parquet data, and query the data with Amazon Athena.
 
 Discover the data
 Sign in to the AWS Management Console and open the AWS Glue console. You can find AWS Glue in the Analytics section. Before building this solution, please choose the us-east-1 AWS Region. 
