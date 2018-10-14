@@ -34,6 +34,9 @@ Sample Data Description: Example ELB logs which is stored s3://athena-examples/e
 
 Another Sample data location: s3://aws-glue-datasets-us-east-1/examples/
 
+ s3://aws-bigdata-blog/artifacts/glue-data-lake/data/
+ s3://serverless-analytics/glue-blog
+
 https://s3.console.aws.amazon.com/s3/buckets/aws-glue-datasets-us-east-1/examples/?region=us-east-1&tab=overview
 
 
