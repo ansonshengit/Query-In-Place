@@ -3,9 +3,10 @@ https://aws.amazon.com/blogs/big-data/build-a-data-lake-foundation-with-aws-glue
 In this session, you will do the following:
 1. Define a database.
 2. Configure a crawler to explore data in an Amazon S3 bucket, and create a table fromt it. 
-3. create a table, transform the CSV file into Parquet, create a table for the Parquet data, and query the data with Amazon Athena.
+3. Transform the CSV file into Parquet, configure another crawler and create another table for the Parquet data, 
+4. Query the data with Amazon Athena on the two tables created above. 
 
-Discover the data
+## Discover the data as is and query in place
 Sign in to the AWS Management Console and open the AWS Glue console. You can find AWS Glue in the Analytics section. Before building this solution, please choose the us-east-1 AWS Region. 
 
 The first step to discovering the data is to add a database. A database is a collection of tables.
@@ -32,7 +33,14 @@ The first step to discovering the data is to add a database. A database is a col
 
 10. Choose Tables in the left navigation pane, and then choose data. This screen describes the table, including schema, properties, and other valuable information.
 
-Transform the data from CSV to Parquet format
+11. You can query the data using standard SQL.
+
+    Choose the nytaxigreenparquet
+    Type `sql Select * From "nycitytaxi"."data" limit 10;`
+    Choose Run Query.
+
+
+## Transform the data from CSV to Parquet format, and query in place
 Now you can configure and run a job to transform the data from CSV to Parquet. Parquet is a columnar format that is well suited for AWS analytics services like Amazon Athena and Amazon Redshift Spectrum.
 
 1. Under ETL in the left navigation pane, choose Jobs, and then choose Add job.
@@ -62,16 +70,10 @@ When the job has finished, add a new table for the Parquet data using a crawler.
 
 After the crawler has finished, there are two tables in the nycitytaxi database: a table for the raw CSV data and a table for the transformed Parquet data.
 
-Analyze the data with Amazon Athena
-Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is capable of querying CSV data. However, the Parquet file format significantly reduces the time and cost of querying the data. For more information, see the blog post Analyzing Data in Amazon S3 using Amazon Athena.
-
-To use AWS Glue with Amazon Athena, you must upgrade your Athena data catalog to the AWS Glue Data Catalog. For more information about upgrading your Athena data catalog, see this step-by-step guide.
-
-1. Open the AWS Management Console for Athena. The Query Editor displays both tables in the nycitytaxi. 
-2. You can query the data using standard SQL.
+You can query the data using standard SQL.
 
     Choose the nytaxigreenparquet
-    Type Select * From "nycitytaxi"."data" limit 10;
+    Type `sql Select * From "nycitytaxi"."data" limit 10;`
     Choose Run Query.
     
 Conclusion
