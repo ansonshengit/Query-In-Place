@@ -32,6 +32,11 @@ Sample File Location: airport-code-small.csv and airport-code-large.csv stored i
 
 Sample Data Description: Example ELB logs which is stored s3://athena-examples/elb/raw/, the format is txt, multiple txt files stored under this s3 location. 
 
+Another Sample data location: s3://aws-glue-datasets-us-east-1/examples/
+
+https://s3.console.aws.amazon.com/s3/buckets/aws-glue-datasets-us-east-1/examples/?region=us-east-1&tab=overview
+
+
 ## Create External Table using DDL statement:
 1. Launch Athena, and select the database that you wish to create the table in on left panel. It can be the default. 
 2. Run the below DDL statement, this should create a table under the selected database, against the sample elb logs. 
