@@ -1,4 +1,4 @@
-#Athena Session
+# Athena Session
 
 In this session, you define a database, configure a crawler to explore data in an Amazon S3 bucket, create a table, transform the CSV file into Parquet, create a table for the Parquet data, and query the data with Amazon Athena.
 
