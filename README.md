@@ -16,7 +16,6 @@ builder4 https://245730503502.signin.aws.amazon.com/console
 builder5 https://485158749081.signin.aws.amazon.com/console
 
 
-
 # Section 1 - S3 Select and Glacier Select
 
 Sample Data Description: Two CSV files which contains a list of airport name, code, location, etc. 
@@ -39,9 +38,11 @@ Sample File Location: The two files are available in s3 bucket your builder acco
 4. Before running the script, create a vault in us-east-1 region. Purchase one provisioned capacity. Record the vault name for input to the python script. Enable the vault notification via SNS. In interest of time, this step is pre-loaded.
 5. Upload the sample data file to the vault mentioned in step 4: airport-code-large.csv. Record the archive id for input to the python script. 
 E.g. run below CLI to upload a file to Glacier:
+
 `aws glacier upload-archive --vault-name builder0-vault1 --account-id - --body airport-code-large.csv`
 
 The output of the CLI looks like below, which contain the archieveID:
+
 `
 {
     "location": "/889111795564/vaults/builder0-vault1/archives/TnsNS4AF_Bo2VkQybTCQHcgoz1PbhKuQoPySP1wu8B_TTlKHkn9pjBizsTNvT0nv4mDGypAZLy36qitLaGWj7G45VyBw_oFR8OUHoIuJZuGfF7lUJh8Spwht4ddN6R7j4lGaOMcoYw",
