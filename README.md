@@ -136,7 +136,16 @@ You can query the data using standard SQL.
 Choose the nytaxigreenparquet
 Type `sql Select * From "nycitytaxi"."data" limit 10;`
 Choose Run Query.
-    
+
+## Creating a Table from Query Results (CTAS)
+
+`sql
+CREATE TABLE new_table AS 
+SELECT * 
+FROM old_table;
+`
+
+
 Conclusion
 This post demonstrates how easy it is to build the foundation of a data lake using AWS Glue and Amazon S3. By using AWS Glue to crawl your data on Amazon S3 and build an Apache Hive-compatible metadata store, you can use the metadata across the AWS analytic services and popular Hadoop ecosystem tools. This combination of AWS services is powerful and easy to use, allowing you to get to business insights faster.
 
