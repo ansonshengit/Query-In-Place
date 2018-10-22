@@ -7,14 +7,14 @@ Understanding of a data lake construct, AWS S3 Select, Glacier Select, Athena an
 # Section 1 - S3 Select and Glacier Select
 
 Sample Data Description: Two CSV files which contains a list of airport name, code, location, etc. 
-1. One small size, 6M, with ~50k rows of records. 
-2. Another large file, 500M, with 4 millions rows of records. 
+1. One small size file, 6M, with ~50k rows of records. 
+2. Another large size file, 500M, with 4 millions rows of records. 
 
-Sample File Location: airport-code-small.csv and airport-code-large.csv stored in <<Bucket Name>> of AWS us-east-1 region. 
+Sample File Location: The two files are available in s3 bucket your builder account: builder<x>-us-east-1 (replace x with your builder number). 
 
 ## S3 Select Builder Instruction:
 1. Review the python script provided in this repository, "s3-select-compare-small.py" and "s3-select-compare-large.py". 
-2. Create a cloud 9 environment on AWS in us-east-1 region. 
+2. Launch the pre-created cloud 9 environment on AWS in us-east-1 region. 
 3. Install python SDK boto3 in the cloud 9 IDE (if not already) created in step 2 above. CLI: "sudo pip install boto3". 
 4. Run the two python scripts respectively. 
 5. Review the results, which shows the significant time imporvement of a query performance with s3 select, the larger the data, the greater the performance. 
