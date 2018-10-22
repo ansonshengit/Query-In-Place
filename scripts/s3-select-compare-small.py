@@ -3,7 +3,7 @@ import time
 
 s3 = boto3.client('s3')
 bucket = 'anson-us-east-1'
-key = 'sample-data/airport-codes_csv.csv'
+key = 'sample-data/airport-code-small.csv'
 
 #without S3 select
 s1 = time.time()
