@@ -139,11 +139,11 @@ Choose Run Query.
 
 ## Creating a Table from Query Results (CTAS)
 
-`sql
+```sql
 CREATE TABLE new_table AS 
 SELECT * 
 FROM old_table;
-`
+```
 
 
 Conclusion
