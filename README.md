@@ -6,7 +6,9 @@ Understanding of a data lake construct, AWS S3 Select, Glacier Select, Athena an
 
 # Section 1 - S3 Select and Glacier Select
 
-Sample Data Description: Two CSV files which contains a list of airport name, code, location. One small size, 6M, with ~50k rows of records. Another large file, 500M, with 4 millions rows of records. 
+Sample Data Description: Two CSV files which contains a list of airport name, code, location, etc. 
+1. One small size, 6M, with ~50k rows of records. 
+2. Another large file, 500M, with 4 millions rows of records. 
 
 Sample File Location: airport-code-small.csv and airport-code-large.csv stored in <<Bucket Name>> of AWS us-east-1 region. 
 
