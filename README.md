@@ -145,7 +145,7 @@ Choose Run Query.
 ```sql
 CREATE TABLE nyctaxi_new_table AS 
 SELECT * 
-FROM old_table;
+FROM "data";
 ```
 
 ```sql
@@ -154,7 +154,7 @@ WITH (
       format = 'Parquet',
       parquet_compression = 'SNAPPY')
 AS SELECT *
-FROM old_table;
+FROM "data";
 ```
 
 
