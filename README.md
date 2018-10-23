@@ -26,16 +26,24 @@ Sample File Location: The two files are available in a public s3 bucket: anson-u
 
 ## S3 Select Builder Instruction:
 1. Review the python script provided in this repository, "s3-select-compare-small.py" and "s3-select-compare-large.py". 
+
 2. Launch the pre-created cloud 9 environment on AWS in us-east-1 region. 
+
 3. Run the s3-select-small.py a couple times to observe the difference between query with and without s3 select. 
+
 4. Run the s3-select-large.py a couple times to observe the difference between query with and without s3 select. 
+
 5. Review the results, which shows the significant time imporvement of a query performance with s3 select, the larger the data, the greater the performance. 
 
 ## Glacier Select Builder Instruction:
 1. Review the python script provided in this repository, "glacier-select-compare-large.py" for running in Cloud 9 IDE and "glacier-get-job-ouput.py" for running in lambda. 
+
 2. Launch the pre-created cloud 9 environment on AWS in us-east-1 region, if not already.
+
 3. Verify that the "glacier-select-compare-large.py" exists in cloud 9 IDE. 
+
 4. Before running the script, create a vault in us-east-1 region. Purchase one provisioned capacity. Record the vault name for input to the python script. Enable the vault notification via SNS. 
+
 5. Upload the sample data file to the vault mentioned in step 4: airport-code-large.csv. Record the archive id for input to the python script. 
 E.g. run below CLI to upload a file to Glacier:
 
@@ -56,41 +64,36 @@ The output of the CLI looks like below, which contain the archieveID:
 7. Create a lambda function with the lambda scrip provided. The attached IAM role require lambda execution, S3 full access, and Glacier full access. Configure the lambda trigger to the be SNS of the Glacier Vault notification, which was created previously. Configure the lambda memory to max. Configure the output bucket name and object key. 
 
 8. Run the python script "glacier-select-compare-large", the code will do two things, the first part of the code initiates a "archive-retrieval" job, which will trigger the lambda via SNS once the archive is ready for download, Lambda function will download the file and copy to the output bucket and prefix defined previously. The second part of the code will do Glacier Select and only initiate a job only to retrieve the relevant data of the object and generate the outcome to the bucket location define in the python script. 
+
 9. Review the results, which shows in the s3 bucket, one result would have the whole object retrieved and the other result showing only the relevant data retrieved, with much smaller file size. 
 
 # Section 2 - Glue and Athena
 
-https://aws.amazon.com/blogs/big-data/build-a-data-lake-foundation-with-aws-glue-and-amazon-s3/
 In this session, you will do the following:
-1. Define a database.
-2. Configure a crawler to explore data in an Amazon S3 bucket, and create a table fromt it. 
-3. Transform the CSV file into Parquet, configure another crawler and create another table for the Parquet data, 
-4. Query the data with Amazon Athena on the two tables created above. 
+1. Discover the data as is using AWS Glue. 
+2. Query the data using the Athena, with the metadata discovered by AWS Glue. 
+3. Optionally using AWS Glue to perform ETL to transform the data from CSV format to Parquet format. Compare query performance using Athena.  
+
+Sample Data used consists of all the rides for the green new york city taxis for the month of January 2017.
+Sample File Location: Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glue-data-lake/data/.
 
 ## Discover the data as is and query in place
-Sign in to the AWS Management Console and open the AWS Glue console. You can find AWS Glue in the Analytics section. Before building this solution, please choose the us-east-1 AWS Region. 
 
-The first step to discovering the data is to add a database. A database is a collection of tables.
+1. Select AWS Glue in AWS console. Choose the us-east-1 AWS Region. Add database, in Database name, type nycitytaxi, and choose Create.
 
-1. In the console, choose Add database. In Database name, type nycitytaxi, and choose Create.
+2. Choose Tables in the navigation pane. A table consists of the names of columns, data type definitions, and other metadata about a dataset. There should be no table at the moment. 
 
-2. Choose Tables in the navigation pane. A table consists of the names of columns, data type definitions, and other metadata about a dataset.
+3. Add a table to the database nycitytaxi by using a crawler. A crawler is a program that connects to a data store and progresses through a prioritized list of classifiers to determine the schema for your data. AWS Glue provides classifiers for common file types like CSV, JSON, Avro, and others. You can also write your own classifier using a grok pattern.
 
-3. Add a table to the database nycitytaxi.You can add a table manually or by using a crawler. A crawler is a program that connects to a data store and progresses through a prioritized list of classifiers to determine the schema for your data. AWS Glue provides classifiers for common file types like CSV, JSON, Avro, and others. You can also write your own classifier using a grok pattern.
+4. To add a crawler, enter the data source: an Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glue-data-lake/data/. 
 
-4. To add a crawler, enter the data source: an Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glue-data-lake/data/. This S3 bucket contains the data file consisting of all the rides for the green taxis for the month of January 2017.
-
-5. Choose Next.
-
-6. For IAM role, choose the default role AWSGlueServiceRoleDefault in the drop-down list.
+6. For IAM role, create a role AWSGlueServiceRole-Default. Make sure it has S3 full access. 
 
 7. For Frequency, choose Run on demand. The crawler can be run on demand or set to run on a schedule.
 
-8. For Database, choose nycitytaxi.It is important to understand how AWS Glue deals with schema changes so that you can select the appropriate method. In this example, the table is updated with any change. For more information about schema changes, see Cataloging Tables with a Crawler in the AWS Glue Developer Guide.
+8. For Database, choose nycitytaxi.
 
-9. Review the steps, and choose Finish. The crawler is ready to run. Choose Run it now.
-
-    When the crawler has finished, one table has been added.
+9. Review the steps, and choose Finish. The crawler is ready to run. Choose Run it now. When the crawler has finished, one table has been added.
 
 10. Choose Tables in the left navigation pane, and then choose data. This screen describes the table, including schema, properties, and other valuable information.
 
@@ -101,7 +104,7 @@ The first step to discovering the data is to add a database. A database is a col
     Choose Run Query.
 
 
-## Transform the data from CSV to Parquet format, and query in place
+## Optionally, transform the data from CSV to Parquet format, and query in place
 Now you can configure and run a job to transform the data from CSV to Parquet. Parquet is a columnar format that is well suited for AWS analytics services like Amazon Athena and Amazon Redshift Spectrum.
 
 1. Under ETL in the left navigation pane, choose Jobs, and then choose Add job.
@@ -137,13 +140,24 @@ Choose the nytaxigreenparquet
 Type `sql Select * From "nycitytaxi"."data" limit 10;`
 Choose Run Query.
 
-## Creating a Table from Query Results (CTAS)
+## Athena New Feature: Creating a Table from Query Results (CTAS)
 
 ```sql
-CREATE TABLE new_table AS 
+CREATE TABLE nyctaxi_new_table AS 
 SELECT * 
 FROM old_table;
 ```
+
+```sql
+CREATE TABLE nyctaxi_new_table_pq
+WITH (
+      format = 'Parquet',
+      parquet_compression = 'SNAPPY')
+AS SELECT *
+FROM old_table;
+```
+
+
 
 
 Conclusion
