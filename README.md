@@ -157,8 +157,15 @@ AS SELECT *
 FROM "data";
 ```
 
-
-
+```sql
+CREATE TABLE nyctaxi_new_table_pq
+WITH (
+      external_location='s3://builder0-us-east-1/nyctaxi_pq'
+      format = 'Parquet',
+      parquet_compression = 'SNAPPY')
+AS SELECT *
+FROM "data";
+```
 
 Conclusion
 This post demonstrates how easy it is to build the foundation of a data lake using AWS Glue and Amazon S3. By using AWS Glue to crawl your data on Amazon S3 and build an Apache Hive-compatible metadata store, you can use the metadata across the AWS analytic services and popular Hadoop ecosystem tools. This combination of AWS services is powerful and easy to use, allowing you to get to business insights faster.
