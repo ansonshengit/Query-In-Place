@@ -25,7 +25,7 @@ Sample Data Description: Two CSV files which contains a list of airport name, co
 
 ## S3 Select Builder Instruction:
 
-1. Go to S3 console and find the bucket called builder[x]-us-east-1, find the sample data file, and click the tab CALLED "Select From".
+1. Go to S3 console and find the bucket called builder[x]-us-east-1, find the sample data file, and click the tab called "Select From".
 
 2. Tick "File has header row", Run "Preview", and below SQL expression. 
 
