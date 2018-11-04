@@ -32,7 +32,7 @@ Sample Data Description: Two CSV files which contains a list of airport name, co
 select name, municipality  from s3object s where municipality = 'Las Vegas' 
 ```
 
-3. Launch the pre-created cloud 9 environment on AWS in us-east-1 region. 
+3. Launch the pre-created cloud 9 environment on AWS in us-west-2 Oregon region. 
 
 4. Review the python script provided in this repository, "s3-select-compare-small.py" and "s3-select-compare-large.py". 
 
@@ -84,25 +84,23 @@ Sample File Location: Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glu
 
 ## Discover the data as is and query in place
 
-1. Select AWS Glue in AWS console. Choose the us-east-1 AWS Region. Add database, in Database name, type nycitytaxi, and choose Create.
+1. Select AWS Glue in AWS console. Choose the us-west-2 AWS Region. Add a new ddatabase, in Database name, type nycitytaxi, and choose Create.
 
-2. Choose Tables in the navigation pane. A table consists of the names of columns, data type definitions, and other metadata about a dataset. There should be no table at the moment. 
+2. Add a table to the database nycitytaxi by using a crawler. A crawler is a program that connects to a data store and progresses through a prioritized list of classifiers to determine the schema for your data. AWS Glue provides classifiers for common file types like CSV, JSON, Avro, and others. You can also write your own classifier using a grok pattern.
 
-3. Add a table to the database nycitytaxi by using a crawler. A crawler is a program that connects to a data store and progresses through a prioritized list of classifiers to determine the schema for your data. AWS Glue provides classifiers for common file types like CSV, JSON, Avro, and others. You can also write your own classifier using a grok pattern.
+3. To add a crawler, enter the data source: an Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glue-data-lake/data/. 
 
-4. To add a crawler, enter the data source: an Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glue-data-lake/data/. 
+4. For IAM role, create a role AWSGlueServiceRole-Default. Make sure it has S3 full access. 
 
-6. For IAM role, create a role AWSGlueServiceRole-Default. Make sure it has S3 full access. 
+5. For Frequency, choose Run on demand. The crawler can be run on demand or set to run on a schedule.
 
-7. For Frequency, choose Run on demand. The crawler can be run on demand or set to run on a schedule.
+6. For Database, choose nycitytaxi.
 
-8. For Database, choose nycitytaxi.
+7. Review the steps, and choose Finish. The crawler is ready to run. Choose Run it now. When the crawler has finished, one table has been added.
 
-9. Review the steps, and choose Finish. The crawler is ready to run. Choose Run it now. When the crawler has finished, one table has been added.
+8. Choose Tables in the left navigation pane, and then choose data. This screen describes the table, including schema, properties, and other valuable information.
 
-10. Choose Tables in the left navigation pane, and then choose data. This screen describes the table, including schema, properties, and other valuable information.
-
-11. You can query the data using standard SQL.
+9. You can query the data using standard SQL.
 
     Choose the nytaxigreenparquet
     Type `sql Select * From "nycitytaxi"."data" limit 10;`
