@@ -161,7 +161,7 @@ FROM "data";
 ```
 
 ```sql
-CREATE TABLE nyctaxi_new_table_pq
+CREATE TABLE nyctaxi_new_table_pq_snappy
 WITH (
       external_location='s3://builder0-us-east-1/nyctaxi_pq'
       format = 'Parquet',
