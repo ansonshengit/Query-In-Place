@@ -163,7 +163,7 @@ FROM "data";
 ```sql
 CREATE TABLE nyctaxi_new_table_pq_snappy
 WITH (
-      external_location='s3://builder0-us-west-2/nyctaxi_pq_snappy'
+      external_location='s3://builder[x]-us-west-2/nyctaxi_pq_snappy',
       format = 'Parquet',
       parquet_compression = 'SNAPPY')
 AS SELECT *
