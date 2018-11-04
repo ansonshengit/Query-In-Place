@@ -22,7 +22,6 @@ Sample Data Description: Two CSV files which contains a list of airport name, co
 1. One small size file, 6M, with ~50k rows of records. 
 2. Another large size file, 500M, with 4 millions rows of records. 
 
-
 ## S3 Select Builder Instruction:
 
 1. Go to S3 console and find the bucket called builder[x]-us-east-1, find the sample data file, and click the tab called "Select From".
