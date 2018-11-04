@@ -32,13 +32,13 @@ Sample Data Description: Two CSV files which contains a list of airport name, co
 select name, municipality  from s3object s where municipality = 'Las Vegas' 
 ```
 
-2. Launch the pre-created cloud 9 environment on AWS in us-east-1 region. 
+3. Launch the pre-created cloud 9 environment on AWS in us-east-1 region. 
 
-3. Review the python script provided in this repository, "s3-select-compare-small.py" and "s3-select-compare-large.py". 
+4. Review the python script provided in this repository, "s3-select-compare-small.py" and "s3-select-compare-large.py". 
 
-4. Run the s3-select-small.py a couple times to observe the difference between query with and without s3 select. 
+5. Run the s3-select-small.py a couple times to observe the difference between query with and without s3 select. 
 
-5. Run the s3-select-large.py a couple times to observe the difference between query with and without s3 select. 
+6. Run the s3-select-large.py a couple times to observe the difference between query with and without s3 select. 
 
 ## Glacier Select Builder Instruction:
 1. Review the python script provided in this repository, "glacier-select-compare-large.py" for running in Cloud 9 IDE and "glacier-get-job-ouput.py" for running in lambda. 
