@@ -41,8 +41,6 @@ select name, municipality  from s3object s where municipality = 'Las Vegas'
 
 5. Run the s3-select-large.py a couple times to observe the difference between query with and without s3 select. 
 
-6. Review the results, which shows the significant time imporvement of a query performance with s3 select, the larger the data, the greater the performance. 
-
 ## Glacier Select Builder Instruction:
 1. Review the python script provided in this repository, "glacier-select-compare-large.py" for running in Cloud 9 IDE and "glacier-get-job-ouput.py" for running in lambda. 
 
