@@ -67,7 +67,9 @@ Sample File Location: Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glu
 
 9. You can query the data using standard SQL, such as:
 
-```sql Select * From "nycitytaxi"."data" limit 10;```
+```sql 
+Select * From "nycitytaxi"."data" limit 10;
+```
 
 
 
