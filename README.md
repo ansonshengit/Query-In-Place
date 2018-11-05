@@ -5,15 +5,15 @@ Understanding of a data lake construct, AWS S3 Select, Glacier Select, Athena an
 
 AWS Accounts:
 
-builder1 https://464361240967.signin.aws.amazon.com/console
+builder1 **https://464361240967.signin.aws.amazon.com/console**
 
-builder2 https://725012194027.signin.aws.amazon.com/console
+builder2 **https://725012194027.signin.aws.amazon.com/console**
 
-builder3 https://606504329419.signin.aws.amazon.com/console
+builder3 **https://606504329419.signin.aws.amazon.com/console**
 
-builder4 https://245730503502.signin.aws.amazon.com/console
+builder4 **https://245730503502.signin.aws.amazon.com/console**
 
-builder5 https://485158749081.signin.aws.amazon.com/console
+builder5 **https://485158749081.signin.aws.amazon.com/console**
 
 
 # Topic 1 - S3 Select and Glacier Select
@@ -56,7 +56,7 @@ Sample File Location: Amazon S3 bucket named **s3://aws-bigdata-blog/artifacts/g
 
 2. Add a table to the database **nycitytaxi** by using a crawler. Choose crawler, add crawler, enter the data source: an Amazon S3 bucket named **s3://aws-bigdata-blog/artifacts/glue-data-lake/data/**. 
 
-4. For IAM role, create a role e.g. AWSGlueServiceRole-Default. 
+4. For IAM role, create a role e.g. **AWSGlueServiceRole-Default**. 
 
 5. For Frequency, choose Run on demand. The crawler can be run on demand or set to run on a schedule.
 
