@@ -16,7 +16,7 @@ builder4 https://245730503502.signin.aws.amazon.com/console
 builder5 https://485158749081.signin.aws.amazon.com/console
 
 
-# Section 1 - S3 Select and Glacier Select
+# Topic 1 - S3 Select and Glacier Select
 
 Sample Data Description: Two CSV files which contains a list of airport name, code, location, etc. 
 1. One small size file, 6M, with ~50k rows of records. 
