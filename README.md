@@ -5,7 +5,7 @@ Understanding of a data lake construct, AWS S3 Select, Glacier Select, Athena an
 
 AWS Accounts:
 
-builder1 (https://464361240967.signin.aws.amazon.com/console)
+builder1 [login](https://464361240967.signin.aws.amazon.com/console)
 
 builder2 https://725012194027.signin.aws.amazon.com/console
 
