@@ -62,9 +62,9 @@ Sample File Location: Amazon S3 bucket named **s3://aws-bigdata-blog/artifacts/g
 
 6. For Database, choose **nycitytaxi**.
 
-7. Review the steps, and choose Finish. The crawler is ready to run. Choose Run it now. When the crawler has finished, one table has been added.
+7. Review the steps, and choose Finish. The crawler is ready to run. Choose **Run it now**. When the crawler has finished, one table has been added.
 
-8. Choose Tables in the left navigation pane, and then choose **data**. This screen describes the table, including schema, properties, and other valuable information. You can preview the table. 
+8. Choose Tables in the left navigation pane, and then choose table **"data"**. This screen describes the table, including schema, properties, and other valuable information. You can preview the table. 
 
 9. You can query the data using standard SQL, such as:
 
