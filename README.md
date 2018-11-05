@@ -5,7 +5,7 @@ Understanding of a data lake construct, AWS S3 Select, Glacier Select, Athena an
 
 AWS Accounts:
 
-builder1 [login](https://464361240967.signin.aws.amazon.com/console)
+builder1 https://464361240967.signin.aws.amazon.com/console
 
 builder2 https://725012194027.signin.aws.amazon.com/console
 
@@ -47,13 +47,14 @@ select name, municipality  from s3object s where municipality = 'Las Vegas'
 # Topic 2 - Glue and Athena
  
 **Sample Data**: Infomation of the rides for the green new york city taxis for the month of January 2017.
-Sample File Location: Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glue-data-lake/data/.
+
+Sample File Location: Amazon S3 bucket named **s3://aws-bigdata-blog/artifacts/glue-data-lake/data/**.
 
 ## Discover the data as is and query in place
 
 1. Select AWS Glue in AWS console. Choose the **us-west-2** AWS Region. Add a new ddatabase, in Database name, type **nycitytaxi**, and choose Create.
 
-2. Add a table to the database **nycitytaxi** by using a crawler. Choose crawler, add crawler, enter the data source: an Amazon S3 bucket named s3://aws-bigdata-blog/artifacts/glue-data-lake/data/. 
+2. Add a table to the database **nycitytaxi** by using a crawler. Choose crawler, add crawler, enter the data source: an Amazon S3 bucket named **s3://aws-bigdata-blog/artifacts/glue-data-lake/data/**. 
 
 4. For IAM role, create a role e.g. AWSGlueServiceRole-Default. 
 
