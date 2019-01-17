@@ -3,6 +3,7 @@ import time
 
 s3 = boto3.client('s3')
 bucket = 'anson-us-east-1'
+#Smaller file is about 500MB size
 key = 'sample-data/airport-code-large.csv'
 
 #query without S3 select
@@ -51,7 +52,7 @@ print("S3 Select Stats details bytesScanned: ")
 print(statsDetails['BytesScanned'])
 print("S3 Select Stats details bytesReturned: ")
 print(statsDetails['BytesReturned'])
-print("Each query will cost 0.002 USD per GB scanned, plus 0.0007 USD per GB returned.")
+print("This query will cost about $0.01 without S3 Select, and about $0.001 with S3 Select.")
 
 e2 = time.time()
 
