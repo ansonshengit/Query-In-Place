@@ -15,12 +15,19 @@ builder4 **https://245730503502.signin.aws.amazon.com/console**
 
 builder5 **https://485158749081.signin.aws.amazon.com/console**
 
+builder6 **https://455732867109.signin.aws.amazon.com/console**
+
+builder7 **https://441367795374.signin.aws.amazon.com/console**
+
+builder8 **https://814788500734.signin.aws.amazon.com/console**
+
+builder9 **https://178538604126.signin.aws.amazon.com/console**
+
+builder10 **https://409374263502.signin.aws.amazon.com/console**
 
 # Topic 1 - S3 Select and Glacier Select
 
-**Sample Data**: Two CSV files which contains a list of airport name, code, location, etc. 
-1. One small size file, 6M, with ~50k rows of records. 
-2. Another large size file, 500M, with 4 millions rows of records. 
+**Sample Data**: CSV file which contains a list of airport name, code, location, etc. One small size file, 6M, with ~50k rows of records. 
 
 ## S3 Select Builder Instruction:
 
@@ -34,11 +41,9 @@ select name, municipality  from s3object s where municipality = 'Las Vegas'
 
 3. Launch the pre-created cloud 9 environment on AWS in **us-west-2** Oregon region. 
 
-4. Review the pre-loaded python script, **"s3-select-compare-small.py"** and **"s3-select-compare-large.py"**. 
+4. Review the pre-loaded python script, **"s3-select-compare-small.py"**.
 
 5. Run the **s3-select-small.py** a couple times to observe the difference between query with and without s3 select. 
-
-6. Run the **s3-select-large.py** a couple times to observe the difference between query with and without s3 select. 
 
 ## Glacier Select Builder Instruction:
 
