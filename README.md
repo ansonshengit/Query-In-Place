@@ -57,26 +57,23 @@ Sample File Location: Amazon S3 bucket named **s3://aws-bigdata-blog/artifacts/g
 
 ## Discover the data as is and query in place
 
-1. Select AWS Glue in AWS console. Choose the **us-west-2** AWS Region. Add a new ddatabase, in Database name, type **nycitytaxi**, and choose Create.
+1. Select AWS Glue in AWS console. Choose the **us-west-2** AWS Region. Click Crawlers in the left pane, add a crawler. 
 
-2. Add a table to the database **nycitytaxi** by using a crawler. Choose crawler, add crawler, enter the data source: an Amazon S3 bucket named **s3://aws-bigdata-blog/artifacts/glue-data-lake/data/** 
+2. Follow the wizard, provide a crawler name, e.g. crawler1. Leave the optional sections default. Use S3 as data store, crawler data in specified path in another account: **s3://aws-bigdata-blog/artifacts/glue-data-lake/data/**. Choose an existing IAM role which has been created for you e.g. **AWSGlueServiceRole-builder**. Select Run on demand as the Frequency. 
 
-3. For AWS IAM role, use the default role that we have created for you e.g. **AWSGlueServiceRole-xxxxxx. 
+3. Next in the **Output** section, we specifiy the database where we want to store the output of the crawler. Click "Add Database", provide a database name e.g. "taxi", select next and finish. 
 
-4. For Frequency, choose Run on demand. The crawler can be run on demand or set to run on a schedule.
+4. The crawler is ready to run. Choose **Run it now**. This will take a few minutes. When the crawler has finished, one table has been added. 
 
-5. For Database, choose **nycitytaxi**.
+5. To verify, you may go to the Database seciton, look for the database you created, and one table named "data" should have been added by the crawler. Click the table, you will see the schema. 
 
-6. Review the steps, and choose Finish. The crawler is ready to run. Choose **Run it now**. When the crawler has finished, one table has been added.
-
-7. Now, let's go to Amazon Athena, choose Tables in the left navigation pane, and then choose table **"data"**. This screen describes the table, including schema, properties, and other valuable information. You can preview the table. 
+7. Now, let's go to Amazon Athena, skip the tutorial. Choose the data base you created in the left navigation pane, and then choose table **"data"**. This screen describes the table, including schema, properties, and other valuable information. You can preview the table. 
 
 9. You can query the data using standard SQL, such as:
 
 ```sql 
 Select * From "nycitytaxi"."data" limit 10;
 ```
-
 
 
 ## Amazon Athena New Feature: Creating a Table from Query Results (CTAS)
@@ -108,7 +105,7 @@ AS SELECT *
 FROM "data";
 ```
 
-`For exmaple: if you are using workstation1, then you should use s3://builder1-us-west-2/nyctaxi_pq_snappy, workstation2 -> s3://builder2-us-west-2/nyctaxi_pq_snappy, etc.`
+`Note to replace [x] with your builder workstation number.`
 
 # Topic 3 - Amazon Redshift Spectrum
 
