@@ -33,7 +33,7 @@ Workstation 10: **https://409374263502.signin.aws.amazon.com/console**
 
 1. Go to S3 console and find the bucket called **builder[x]-us-west-2**, find the sample data file, and click the tab called **"Select From"**.
 
-2. Tick **"File has header row"**, Run **"Preview"**, as well as the following SQL query:
+2. Tick **"File has header row"**, Click **"Show File Preview"**, Click **"Next"**, and run the following SQL query:
 
 ```sql
 select name, municipality  from s3object s where municipality = 'Las Vegas' 
