@@ -3,27 +3,27 @@
 This document proivdes the instruction for AWS builder session.
 Understanding of a data lake construct, AWS S3 Select, Glacier Select, Athena and Glue is recommended. 
 
-AWS Accounts:
+AWS Accounts: (Please use **Oregon** region for this lab)
 
-builder1: **https://464361240967.signin.aws.amazon.com/console**
+Workstation 1: **https://464361240967.signin.aws.amazon.com/console**
 
-builder2: **https://725012194027.signin.aws.amazon.com/console**
+Workstation 2: **https://725012194027.signin.aws.amazon.com/console**
 
-builder3: **https://606504329419.signin.aws.amazon.com/console**
+Workstation 3: **https://606504329419.signin.aws.amazon.com/console**
 
-builder4: **https://245730503502.signin.aws.amazon.com/console**
+Workstation 4: **https://245730503502.signin.aws.amazon.com/console**
 
-builder5: **https://485158749081.signin.aws.amazon.com/console**
+Workstation 5: **https://485158749081.signin.aws.amazon.com/console**
 
-builder6: **https://455732867109.signin.aws.amazon.com/console**
+Workstation 6: **https://455732867109.signin.aws.amazon.com/console**
 
-builder7: **https://441367795374.signin.aws.amazon.com/console**
+Workstation 7: **https://441367795374.signin.aws.amazon.com/console**
 
-builder8: **https://814788500734.signin.aws.amazon.com/console**
+Workstation 8: **https://814788500734.signin.aws.amazon.com/console**
 
-builder9: **https://178538604126.signin.aws.amazon.com/console**
+Workstation 9: **https://178538604126.signin.aws.amazon.com/console**
 
-builder10: **https://409374263502.signin.aws.amazon.com/console**
+Workstation 10: **https://409374263502.signin.aws.amazon.com/console**
 
 # Topic 1 - S3 Select and Glacier Select
 
