@@ -45,10 +45,6 @@ select name, municipality  from s3object s where municipality = 'Las Vegas'
 
 5. Run the **s3-select-small.py** a couple times to observe the difference between query with and without s3 select. 
 
-## Glacier Select Builder Instruction:
-
-1. Watch the demo, which shows the difference between normal Glacier retrival and Glacier Select. 
-
 # Topic 2 - AWS Glue and Amazon Athena
  
 **Sample Data**: Infomation of the rides for the green new york city taxis for the month of January 2017.
